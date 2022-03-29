@@ -3,5 +3,5 @@ platform :ios, '11.0'
 target 'AicactusAdsNetworkSample' do
 
     # Pods for AicactusAdsNetworkSample
-    pod 'AicactusAdsNetwork', '~> 1.1.0'
+    pod 'AicactusAdsNetwork', '1.1.0'
 end

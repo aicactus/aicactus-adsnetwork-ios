@@ -1,0 +1,1303 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.6 (swiftlang-5.6.0.323.62 clang-1316.0.20.8)
+// swift-module-flags: -target x86_64-apple-ios11.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name AicactusAdsNetwork
+@_exported import AicactusAdsNetwork
+import CoreGraphics
+import Foundation
+import GoogleInteractiveMediaAds
+import Swift
+import UIKit
+import WebKit
+import _Concurrency
+public enum CallbackQueue {
+  case asyncMain
+  case currentMainOrSync
+  case untouch
+  case dispatch(Dispatch.DispatchQueue)
+  case operation(Foundation.OperationQueue)
+}
+public struct PrivateMarketplace : Swift.Codable {
+  public var privateAuction: Swift.Int
+  public var deals: [AicactusAdsNetwork.Deal]?
+  public var ext: Swift.String?
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public enum VideoCompanion : Swift.Int, Swift.Codable {
+  case concurrent
+  case endCard
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public struct Deal : Swift.Codable {
+  public let id: Swift.String
+  public var bidFloor: Swift.Int
+  public var bidFloorCurrency: Swift.String
+  public var at: Swift.Int?
+  public var whiteListSeatIDs: [Swift.String]?
+  public var advertiserDomains: [Swift.String]?
+  public var ext: Swift.String?
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct Device : Swift.Codable {
+  public let userAgent: Swift.String?
+  public var geo: AicactusAdsNetwork.Geo?
+  public var doNotTrack: Swift.Int?
+  public var limitAdTracking: Swift.Int
+  public var ip: Swift.String?
+  public var ipV6: Swift.String?
+  public var deviceType: AicactusAdsNetwork.Device.DeviceType
+  public let make: Swift.String
+  public let model: Swift.String
+  public let osName: Swift.String
+  public let osVersion: Swift.String
+  public let hardwareVersion: Swift.String
+  public let height: CoreGraphics.CGFloat
+  public let width: CoreGraphics.CGFloat
+  public let ppi: CoreGraphics.CGFloat
+  public let pixelRatio: CoreGraphics.CGFloat
+  public let supportJS: Swift.Int
+  public var geoFetch: Swift.Int?
+  public var flashVersion: Swift.String?
+  public var language: Swift.String?
+  public var carrier: Swift.String?
+  public var mccMNC: Swift.String?
+  public var connectionType: AicactusAdsNetwork.Device.ConnectionType?
+  public var idForAdvertiser: Swift.String
+  public var deviceIDSHA1: Swift.String?
+  public var deviceIDMD5: Swift.String?
+  public var devicePlatformSHA1: Swift.String?
+  public var devicePlatformMD5: Swift.String?
+  public var macAddressSHA1: Swift.String?
+  public var macAddressMD5: Swift.String?
+  public var ext: Swift.String?
+  public enum DeviceType : Swift.Int, Swift.Codable {
+    case mobileOrTablet
+    case personalComputer
+    case connectedTV
+    case phone
+    case tablet
+    case connectedDevice
+    case setTopBox
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  public enum ConnectionType : Swift.Int, Swift.Codable {
+    case unknown
+    case ethernet
+    case wifi
+    case cellularNetworkUnknownGeneration
+    case cellular2G
+    case cellular3G
+    case cellular4G
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public protocol RequestAdapter {
+  func adapted(_ request: Foundation.URLRequest) throws -> Foundation.URLRequest
+}
+public struct AnyRequestAdapter : AicactusAdsNetwork.RequestAdapter {
+  public init(_ block: @escaping (Foundation.URLRequest) throws -> Foundation.URLRequest)
+  public func adapted(_ request: Foundation.URLRequest) throws -> Foundation.URLRequest
+}
+@_hasMissingDesignatedInitializers public class BidRequestApiClient {
+  public static var shared: AicactusAdsNetwork.BidRequestApiClient
+  public func nativeAdRequest(_ adUnitID: Swift.Int64, withAssets assets: Swift.Array<AicactusAdsNetwork.Asset.Request>, request adRequest: AicactusAdsNetwork.AdRequest, completionHandler completion: @escaping (Swift.Result<AicactusAdsNetwork.Bid, AicactusAdsNetwork.AdsNetworkSDKError>) -> Swift.Void)
+  public func bannerAdRequest(adUnitID: Swift.Int64, adSize: AicactusAdsNetwork.AdSize, completionHandler completion: @escaping (Swift.Result<AicactusAdsNetwork.Bid, AicactusAdsNetwork.AdsNetworkSDKError>) -> Swift.Void)
+  public func videoAdRequest(adUnitID: Swift.Int64, adSize: AicactusAdsNetwork.AdSize, completionHandler completion: @escaping (Swift.Result<AicactusAdsNetwork.Bid, AicactusAdsNetwork.AdsNetworkSDKError>) -> Swift.Void)
+  @objc deinit
+}
+public struct Impression : Swift.Codable {
+  public let id: Swift.String
+  public var metric: [AicactusAdsNetwork.Metric]?
+  public var banner: AicactusAdsNetwork.Banner?
+  public var video: AicactusAdsNetwork.Video?
+  public var audio: AicactusAdsNetwork.Audio?
+  public var native: AicactusAdsNetwork.Native?
+  public var pmp: AicactusAdsNetwork.PrivateMarketplace?
+  public var displayManager: Swift.String?
+  public var displayManagerVersion: Swift.String?
+  public var interstitial: Swift.Int?
+  public var tagId: Swift.String?
+  public var bidFloor: Swift.Int?
+  public var bidFloorCurrency: Swift.String?
+  public var clickBrowser: Swift.Int?
+  public var secure: Swift.Int
+  public var iframeBuster: [Swift.String]?
+  public var expire: Swift.Int?
+  public var ext: AicactusAdsNetwork.Impression.Extension?
+  public struct Extension : Swift.Codable {
+    public var preBid: AicactusAdsNetwork.PreBid?
+    public struct AiCactusAd : Swift.Codable {
+      public var headerBids: [Swift.String]?
+      public var containerID: Swift.Int64?
+      public var inventoryID: Swift.Int64?
+      public func encode(to encoder: Swift.Encoder) throws
+      public init(from decoder: Swift.Decoder) throws
+    }
+    public func encode(to encoder: Swift.Encoder) throws
+    public init(from decoder: Swift.Decoder) throws
+  }
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct AdRequest {
+  public init()
+}
+public enum CreativeAttribute : Swift.Int, Swift.Codable {
+  case audioADAutoPlay
+  case audioADUserInitiated
+  case expandableAutomatic
+  case expandableUserClicked
+  case expandaableUserRollOver
+  case videoADInBannerAutoPlay
+  case videoADInBannerUserInitiated
+  case pop
+  case provocativeOrSuggestiveImagery
+  case animation
+  case surveys
+  case textOnly
+  case userInteractive
+  case alertStyle
+  case hasAudioOnOffButton
+  case provideSkipButton
+  case adobeFlash
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public struct BidResponse : Swift.Decodable {
+  public let id: Swift.String
+  public let seatBids: [AicactusAdsNetwork.SeatBid]?
+  public let bidID: Swift.String?
+  public let currency: Swift.String?
+  public let customData: Swift.String?
+  public let noBidReasonCode: AicactusAdsNetwork.NoBidReasonCode?
+  public init(from decoder: Swift.Decoder) throws
+}
+public enum NoBidReasonCode : Swift.Int, Swift.Decodable {
+  case unknown
+  case technical
+  case invalid
+  case knowWebSpider
+  case suspectedNoHumanTraffic
+  case cloudDataCenterProxy
+  case unsupportedDevice
+  case blockedPublisher
+  case unmatchedUser
+  case dailyReaderCapMet
+  case dailyDomainCapMet
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public struct Source : Swift.Codable {
+  public let transactionID: Swift.String
+  public var finalDecision: Swift.Int?
+  public var paymentChainID: Swift.String?
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct Constant {
+  public static let SDKVersion: Swift.String
+  public static let APIHost: Swift.String
+  public static let BatchEndpoint: Swift.String
+  public static let UsingMock: Swift.Bool
+  public static let MockAPIHost: Swift.String
+  public static let MockPreBidCoreUrl: Swift.String
+}
+public enum AdType : Swift.String {
+  case banner
+  case video
+  case native
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct Publisher : Swift.Codable {
+  public let id: Swift.String?
+  public let name: Swift.String?
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public enum AdsNetworkSDKError : Swift.Error {
+  public enum GeneralErrorReason {
+    case conversionError(string: Swift.String, encoding: Swift.String.Encoding)
+    case coreError(string: Swift.String)
+  }
+  public enum RequestErrorReason {
+    case missingURL
+    case lackOfAccessToken
+    case jsonEncodingFailed(Swift.Error)
+    case invalidParameter([AicactusAdsNetwork.AdsNetworkSDKError.RequestErrorReason.ParameterItem])
+  }
+  public enum ResponseErrorReason {
+    public struct APIErrorDetail {
+      public let code: Swift.Int
+      public let error: AicactusAdsNetwork.APIError?
+      public let raw: Foundation.HTTPURLResponse
+      public let rawString: Swift.String?
+    }
+    case URLSessionError(Swift.Error)
+    case dataParsingFailed(Any.Type, Foundation.Data, Swift.Error?)
+    case nonHTTPURLResponse
+    case invalidHTTPStatusAPIError(detail: AicactusAdsNetwork.AdsNetworkSDKError.ResponseErrorReason.APIErrorDetail)
+  }
+  case generalError(reason: AicactusAdsNetwork.AdsNetworkSDKError.GeneralErrorReason)
+  case requestFailed(reason: AicactusAdsNetwork.AdsNetworkSDKError.RequestErrorReason)
+  case responseFailed(reason: AicactusAdsNetwork.AdsNetworkSDKError.ResponseErrorReason)
+  case untypedError(error: Swift.Error)
+}
+extension AicactusAdsNetwork.AdsNetworkSDKError.RequestErrorReason {
+  public struct ParameterItem {
+    public let name: Swift.String
+    public let value: Swift.String
+    public let description: Swift.String
+  }
+}
+extension AicactusAdsNetwork.AdsNetworkSDKError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+public enum PlaybackMethod : Swift.Int, Swift.Codable {
+  case pageLoadSoundOn
+  case pageLoadSoundOff
+  case onClickSoundOn
+  case mouseOverSoundOn
+  case enterViewportSoundOn
+  case enterViewportSoundOff
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public struct Native : Swift.Codable {
+  public let request: Swift.String
+  public var version: Swift.String
+  public var apis: [AicactusAdsNetwork.ApiFramework]?
+  public var blockedAttributes: [AicactusAdsNetwork.CreativeAttribute]?
+  public var ext: Swift.String?
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public enum CoreApiClient {
+  public static func initContainer(configurationID: Swift.String, callbackQueue queue: AicactusAdsNetwork.CallbackQueue = .currentMainOrSync, completionHandler completion: @escaping (Swift.Result<AicactusAdsNetwork.Container, AicactusAdsNetwork.AdsNetworkSDKError>) -> Swift.Void)
+}
+public struct ApplicationInfo : Swift.Codable {
+  public var id: Swift.String?
+  public let name: Swift.String?
+  public let bundle: Swift.String?
+  public var domain: Swift.String?
+  public var storeURL: Swift.String?
+  public let version: Swift.String?
+  public var publisher: AicactusAdsNetwork.Publisher?
+  public let ext: AicactusAdsNetwork.ApplicationInfo.Extension?
+  public init()
+  public struct Extension : Swift.Codable {
+    public let aicactus: AicactusAdsNetwork.Aicactus
+    public func encode(to encoder: Swift.Encoder) throws
+    public init(from decoder: Swift.Decoder) throws
+  }
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct Aicactus : Swift.Codable {
+  public let version: Swift.String
+  public let source: Swift.String
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct Ad : Swift.Decodable {
+  public let id: Swift.String
+  public let bid: AicactusAdsNetwork.BidResponse?
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct AssetImage : Swift.Codable {
+  public struct Request : Swift.Encodable {
+    public init()
+    public var type: AicactusAdsNetwork.AssetImage.ImageType?
+    public var width: Swift.Int?
+    public var minWidth: Swift.Int?
+    public var height: Swift.Int?
+    public var minHeight: Swift.Int?
+    public var mimes: Swift.Array<Swift.String>?
+    public var ext: Swift.String?
+    public func encode(to encoder: Swift.Encoder) throws
+  }
+  public struct Response : Swift.Decodable {
+    public let url: Swift.String
+    public init(from decoder: Swift.Decoder) throws
+  }
+  public enum ImageType : Swift.Int, Swift.Encodable {
+    case icon
+    case main
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct PreBid : Swift.Codable {
+  public var targeting: AicactusAdsNetwork.Target?
+  public var storeRequest: AicactusAdsNetwork.StoreRequest?
+  public var cache: AicactusAdsNetwork.Cache?
+  public var meta: AicactusAdsNetwork.Meta?
+  public var bidID: Swift.String?
+  public var type: Swift.String?
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct StoreRequest : Swift.Codable {
+  public let id: Swift.String?
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct Cache : Swift.Codable {
+  public let key: Swift.String?
+  public let url: Swift.String?
+  public let bids: AicactusAdsNetwork.BidCacheInfo?
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct BidCacheInfo : Swift.Codable {
+  public let url: Swift.String?
+  public let cacheId: Swift.String?
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct Meta : Swift.Codable {
+  public let advertiserId: Swift.Int?
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct Link : Swift.Decodable {
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct APIError : Swift.Decodable {
+  public let message: Swift.String
+  public init(from decoder: Swift.Decoder) throws
+}
+public enum MediaRating : Swift.Int, Swift.Decodable {
+  case all
+  case over12
+  case mature
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public struct DemandSidePlatform : Swift.Decodable {
+  public let id: Swift.Int64
+  public let name: Swift.String?
+  public let credential: AicactusAdsNetwork.DemandSidePlatform.Credential?
+  public let domain: Swift.String?
+  public let status: Swift.String?
+  public let priority: Swift.Int?
+  public var url: Swift.String?
+  public var directDeal: Swift.Int?
+  public var headerBidding: Swift.Int?
+  public struct Credential : Swift.Decodable {
+    public let apiKey: Swift.String?
+    public init(from decoder: Swift.Decoder) throws
+  }
+  public init(from decoder: Swift.Decoder) throws
+}
+public enum DeliveryMethod : Swift.Int, Swift.Codable {
+  case streaming
+  case progressive
+  case download
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum ExpandableDirection : Swift.Int, Swift.Codable {
+  case left
+  case right
+  case up
+  case down
+  case fullscreen
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum CompanionType : Swift.Int, Swift.Codable {
+  case `static`
+  case html
+  case iframe
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public struct NativeAdResponse : Swift.Decodable {
+  public let assets: Swift.Array<AicactusAdsNetwork.Asset.Response>?
+  public let assetsUrl: Swift.String?
+  public let dcoUrl: Swift.String?
+  public let eventTrackers: Swift.Array<AicactusAdsNetwork.EventTracker>?
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct Segment : Swift.Codable {
+  public var id: Swift.String?
+  public var name: Swift.String?
+  public var ext: Swift.String?
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct AssetVideo {
+  public struct Request : Swift.Encodable {
+    public func encode(to encoder: Swift.Encoder) throws
+  }
+  public struct Response : Swift.Decodable {
+    public let vastTag: Swift.String
+    public init(from decoder: Swift.Decoder) throws
+  }
+}
+public struct User : Swift.Codable {
+  public var id: Swift.String?
+  public var buyerUID: Swift.String?
+  public var yearOfBirth: Swift.Int?
+  public var gender: AicactusAdsNetwork.User.Gender
+  public var keywords: Swift.String?
+  public var customData: Swift.String?
+  public var geo: AicactusAdsNetwork.Geo?
+  public var ext: Swift.String?
+  public struct Data : Swift.Codable {
+    public var id: Swift.String?
+    public var name: Swift.String?
+    public var segment: [AicactusAdsNetwork.Segment]?
+    public var ext: Swift.String?
+    public func encode(to encoder: Swift.Encoder) throws
+    public init(from decoder: Swift.Decoder) throws
+  }
+  public enum Gender : Swift.String, Swift.Codable {
+    case male
+    case female
+    case other
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct Metric : Swift.Codable {
+  public let id: Swift.String
+  public var value: Swift.Float
+  public var vendor: Swift.String?
+  public var ext: Swift.String?
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public enum HTTPMethod : Swift.String {
+  case get
+  case post
+  case put
+  case delete
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum ContentType {
+  case none
+  case formUrlEncoded
+  case json
+  public static func == (a: AicactusAdsNetwork.ContentType, b: AicactusAdsNetwork.ContentType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public typealias Parameters = [Swift.String : Any]
+public protocol Request {
+  associatedtype Response : Swift.Decodable
+  var method: AicactusAdsNetwork.HTTPMethod { get }
+  var baseURL: Foundation.URL { get }
+  var path: Swift.String { get }
+  var pathQueries: [Foundation.URLQueryItem]? { get }
+  var parameters: AicactusAdsNetwork.Parameters? { get }
+  var contentType: AicactusAdsNetwork.ContentType { get }
+  var adapters: [AicactusAdsNetwork.RequestAdapter] { get }
+  var suffixAdapters: [AicactusAdsNetwork.RequestAdapter]? { get }
+  var pipelines: [AicactusAdsNetwork.ResponsePipeline] { get }
+  var prefixPipelines: [AicactusAdsNetwork.ResponsePipeline]? { get }
+  var dataParser: AicactusAdsNetwork.ResponsePipelineTerminator { get }
+  var timeout: Foundation.TimeInterval { get }
+  var cachePolicy: Foundation.NSURLRequest.CachePolicy { get }
+}
+extension AicactusAdsNetwork.Request {
+  public var baseURL: Foundation.URL {
+    get
+  }
+  public var cachePolicy: Foundation.NSURLRequest.CachePolicy {
+    get
+  }
+  public var adapters: [AicactusAdsNetwork.RequestAdapter] {
+    get
+  }
+  public var pipelines: [AicactusAdsNetwork.ResponsePipeline] {
+    get
+  }
+  public var pathQueries: [Foundation.URLQueryItem]? {
+    get
+  }
+  public var suffixAdapters: [AicactusAdsNetwork.RequestAdapter]? {
+    get
+  }
+  public var prefixPipelines: [AicactusAdsNetwork.ResponsePipeline]? {
+    get
+  }
+  public var dataParser: AicactusAdsNetwork.ResponsePipelineTerminator {
+    get
+  }
+  public var contentType: AicactusAdsNetwork.ContentType {
+    get
+  }
+  public var parameters: AicactusAdsNetwork.Parameters? {
+    get
+  }
+  public var timeout: Foundation.TimeInterval {
+    get
+  }
+}
+public enum AdPosition : Swift.Int, Swift.Codable {
+  case unknown
+  case aboveTheFold
+  case visibleInitially
+  case belowTheFold
+  case header
+  case footer
+  case sidebar
+  case fullscreen
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public struct EventTracker : Swift.Codable {
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public enum VideoProtocol : Swift.Int, Swift.Codable {
+  case vast1
+  case vast2
+  case vast3
+  case vast1Wrapper
+  case vast2Wrapper
+  case vast3Wrapper
+  case vast4
+  case vast4Wrapper
+  case daast1
+  case daast1Wrapper
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class AicactusAdsNetwork {
+  public static let shared: AicactusAdsNetwork.AicactusAdsNetwork
+  public func setup(_ configurationID: Swift.String?, completionHandler completion: ((Swift.Result<AicactusAdsNetwork.Container, AicactusAdsNetwork.AdsNetworkSDKError>) -> Swift.Void)? = nil)
+  @objc deinit
+}
+public struct NativeAdRequest : Swift.Encodable {
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct SeatBid : Swift.Decodable {
+  public let bids: [AicactusAdsNetwork.Bid]
+  public let seat: Swift.String?
+  public let group: Swift.Int?
+  public let ext: Swift.String?
+  public init(from decoder: Swift.Decoder) throws
+}
+public enum VideoStartDelay : Swift.Int, Swift.Codable {
+  case preRoll
+  case genericMidRoll
+  case genericPostRoll
+  case midRoll
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public struct Target : Swift.Codable {
+  public let pb: Swift.String?
+  public let deal: Swift.String?
+  public let env: Swift.String?
+  public let cacheId: Swift.String?
+  public let bidder: Swift.String?
+  public let bidderAicactus: Swift.String?
+  public let dealAicactus: Swift.String?
+  public let envAicactus: Swift.String?
+  public let uuidAicactus: Swift.String?
+  public let cachePath: Swift.String?
+  public let cacheHost: Swift.String?
+  public let cachePathAicactus: Swift.String?
+  public let pbAicactus: Swift.String?
+  public let cacheIdAicactus: Swift.String?
+  public let uuid: Swift.String?
+  public let cacheHostAicactus: Swift.String?
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct BidRequest : Swift.Codable {
+  public let id: Swift.String
+  public var impression: [AicactusAdsNetwork.Impression]
+  public var app: AicactusAdsNetwork.ApplicationInfo
+  public var device: AicactusAdsNetwork.Device
+  public var user: AicactusAdsNetwork.User
+  public var test: Swift.Int?
+  public var auctionType: Swift.Int?
+  public var maximumTime: Swift.Int?
+  public var whiteListSeatIDs: [Swift.String]?
+  public var blockedListSeatIDs: [Swift.String]?
+  public var allImpressions: Swift.Int?
+  public var currencies: [Swift.String]?
+  public var whiteListLanguages: [Swift.String]?
+  public var blockedCategories: [Swift.String]?
+  public var blockedAdvertiserDomains: [Swift.String]?
+  public var blockedApps: [Swift.String]?
+  public var source: AicactusAdsNetwork.Source
+  public var regs: AicactusAdsNetwork.Regs?
+  public var ext: Swift.String?
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct PostBidRequest : AicactusAdsNetwork.Request {
+  public init(url: Swift.String, request: AicactusAdsNetwork.BidRequest)
+  public var baseURL: Foundation.URL {
+    get
+  }
+  public var path: Swift.String {
+    get
+  }
+  public var method: AicactusAdsNetwork.HTTPMethod
+  public var parameters: [Swift.String : Any]? {
+    get
+  }
+  public var contentType: AicactusAdsNetwork.ContentType
+  public typealias Response = AicactusAdsNetwork.BidResponse
+}
+public struct Video : Swift.Codable {
+  public let mimes: [Swift.String]
+  public var minDuration: Swift.Int?
+  public var maxDuration: Swift.Int?
+  public var protocols: [AicactusAdsNetwork.VideoProtocol]?
+  public var width: Swift.Int?
+  public var height: Swift.Int?
+  public var startDelay: Swift.Int?
+  public var placement: AicactusAdsNetwork.Video.Placement?
+  public var linearity: AicactusAdsNetwork.Video.Linearity?
+  public var skip: Swift.Int?
+  public var skipMin: Swift.Int?
+  public var skipAfter: Swift.Int?
+  public var sequence: Swift.Int?
+  public var blockedAttributes: [AicactusAdsNetwork.CreativeAttribute]?
+  public var maxExtended: Swift.Int?
+  public var minBitrate: Swift.Int?
+  public var maxBitrate: Swift.Int?
+  public var boxingAllowed: Swift.Int?
+  public var playbackMethod: [AicactusAdsNetwork.PlaybackMethod]?
+  public var playbackEnd: Swift.Int?
+  public var deliveryMethod: [AicactusAdsNetwork.DeliveryMethod]?
+  public var position: AicactusAdsNetwork.AdPosition?
+  public var companionAds: [AicactusAdsNetwork.Banner]?
+  public var apis: [AicactusAdsNetwork.ApiFramework]?
+  public var companionTypes: [AicactusAdsNetwork.CompanionType]?
+  public enum Linearity : Swift.Int, Swift.Codable {
+    case inStream
+    case overlay
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  public enum Placement : Swift.Int, Swift.Codable {
+    case inStream
+    case inBanner
+    case inArticle
+    case inFeed
+    case floating
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public protocol VideoAdLoaderDelegate : AnyObject {
+  func videoAdLoader(_ unitID: Swift.Int64, didSuccessLoad bid: AicactusAdsNetwork.Bid, vastTagURL url: Swift.String)
+  func videoAdLoader(_ unitID: Swift.Int64, didFailLoad error: AicactusAdsNetwork.AdsNetworkSDKError)
+}
+open class VideoAdLoader {
+  public var delegate: AicactusAdsNetwork.VideoAdLoaderDelegate?
+  public init(adUnitID: Swift.Int64, adSize: AicactusAdsNetwork.AdSize)
+  public func loadAd(_ adRequest: AicactusAdsNetwork.AdRequest)
+  @objc deinit
+}
+public protocol AdLoaderDelegate : AnyObject {
+  func adLoader(_ unitID: Swift.Int64, didSuccessLoad nativeAd: AicactusAdsNetwork.NativeAdResponse)
+  func adLoader(_ unitID: Swift.Int64, didFailLoad error: AicactusAdsNetwork.AdsNetworkSDKError)
+}
+open class AdLoader {
+  public var delegate: AicactusAdsNetwork.AdLoaderDelegate?
+  public init(adUnitID: Swift.Int64)
+  public func loadNativeAd(_ adRequest: AicactusAdsNetwork.AdRequest, withAssets assets: Swift.Array<AicactusAdsNetwork.Asset.Request>)
+  @objc deinit
+}
+public struct Inventory : Swift.Decodable {
+  public let id: Swift.Int64
+  public let cpm: Swift.Int?
+  public let defaultAds: AicactusAdsNetwork.Ad?
+  public let trackerTemplate: AicactusAdsNetwork.TrackerTemplate?
+  public let platforms: [AicactusAdsNetwork.DemandSidePlatform]?
+  public let format: Swift.String?
+  public let merge: Swift.String?
+  public let metadata: AicactusAdsNetwork.Metadata
+  public let name: Swift.String?
+  public let status: Swift.String?
+  public let type: Swift.String?
+  public let floorPrice: Swift.Float?
+  public let positionID: Swift.Int?
+  public let clickRate: Swift.Int?
+  public let fillRate: Swift.Int?
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct TrackerTemplate : Swift.Decodable {
+  public let id: Swift.String
+  public let clickImage: Swift.String
+  public let clickUrl: Swift.String
+  public let code: Swift.String
+  public let name: Swift.String
+  public let price: Swift.Int
+  public let type: Swift.String
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct Metadata : Swift.Decodable {
+  public let backgroundColor: Swift.String
+  public let height: Swift.Int
+  public let width: Swift.Int
+  public let duration: Swift.Int
+  public let ext: Swift.String
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct Audio : Swift.Codable {
+  public let mines: [Swift.String]
+  public var minDuration: Swift.Int?
+  public var maxDuration: Swift.Int?
+  public var protocols: [AicactusAdsNetwork.VideoProtocol]
+  public var startDelay: AicactusAdsNetwork.VideoStartDelay?
+  public var sequence: Swift.Int?
+  public var blockedAttributes: [AicactusAdsNetwork.CreativeAttribute]?
+  public var maxExtended: Swift.Int?
+  public var minBitrate: Swift.Int?
+  public var maxBitrate: Swift.Int?
+  public var deliveryMethod: [AicactusAdsNetwork.DeliveryMethod]?
+  public var companionAds: [AicactusAdsNetwork.Banner]?
+  public var apis: [AicactusAdsNetwork.ApiFramework]?
+  public var companionTypes: [AicactusAdsNetwork.CompanionType]?
+  public var maxSequence: Swift.Int?
+  public var feed: AicactusAdsNetwork.Audio.FeedType?
+  public var stitched: Swift.Int?
+  public var volumeMode: AicactusAdsNetwork.Audio.VolumeMode?
+  public var ext: Swift.String?
+  public enum FeedType : Swift.Int, Swift.Codable {
+    case musicService
+    case broadcast
+    case podcast
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  public enum VolumeMode : Swift.Int, Swift.Codable {
+    case none
+    case average
+    case peak
+    case loudness
+    case custom
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct Asset : Swift.Codable {
+  public struct Request : Swift.Encodable {
+    public init()
+    public var id: Swift.Int?
+    public var required: Swift.Int
+    public var title: AicactusAdsNetwork.AssetTitle.Request?
+    public var image: AicactusAdsNetwork.AssetImage.Request?
+    public var video: AicactusAdsNetwork.AssetVideo.Request?
+    public var data: AicactusAdsNetwork.AssetData.Request?
+    public func encode(to encoder: Swift.Encoder) throws
+  }
+  public struct Response : Swift.Decodable {
+    public let id: Swift.Int?
+    public let required: Swift.Int?
+    public let title: AicactusAdsNetwork.AssetTitle.Response?
+    public let image: AicactusAdsNetwork.AssetImage.Response?
+    public let video: AicactusAdsNetwork.AssetVideo.Response?
+    public let data: AicactusAdsNetwork.AssetData.Response?
+    public let link: AicactusAdsNetwork.Link?
+    public init(from decoder: Swift.Decoder) throws
+  }
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct Capping : Swift.Decodable {
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct AssetData {
+  public struct Request : Swift.Encodable {
+    public init()
+    public var type: Swift.Int?
+    public var length: Swift.Int?
+    public func encode(to encoder: Swift.Encoder) throws
+  }
+  public struct Response : Swift.Decodable {
+    public let value: Swift.String
+    public var type: Swift.Int?
+    public var length: Swift.Int?
+    public init(from decoder: Swift.Decoder) throws
+  }
+}
+public struct Bid : Swift.Decodable {
+  public let id: Swift.String
+  public let impressionID: Swift.String
+  public let price: Swift.Float
+  public let winURL: Swift.String?
+  public let billURL: Swift.String?
+  public let lossURL: Swift.String?
+  public let adMarkup: Swift.String?
+  public let preloadedAdID: Swift.String?
+  public let advertiserDomains: [Swift.String]?
+  public let bundle: Swift.String?
+  public let imageURL: Swift.String?
+  public let campaignID: Swift.String?
+  public let creativeID: Swift.String?
+  public let tacticID: Swift.String?
+  public let categories: [Swift.String]?
+  public let attributes: [AicactusAdsNetwork.CreativeAttribute]?
+  public let api: AicactusAdsNetwork.ApiFramework?
+  public let videoProtocol: AicactusAdsNetwork.VideoProtocol?
+  public let mediaRating: AicactusAdsNetwork.MediaRating?
+  public let language: Swift.String?
+  public let dealID: Swift.String?
+  public let width: Swift.Int?
+  public let height: Swift.Int?
+  public let widthRatio: Swift.Int?
+  public let heightRatio: Swift.Int?
+  public let expired: Swift.Int?
+  public let ext: AicactusAdsNetwork.Extension?
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct Extension : Swift.Decodable {
+  public let preBid: AicactusAdsNetwork.PreBid?
+  public init(from decoder: Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers public class Session {
+  public static var shared: AicactusAdsNetwork.Session {
+    get
+  }
+  @discardableResult
+  public func send<T>(_ request: T, callbackQueue: AicactusAdsNetwork.CallbackQueue = .currentMainOrSync, completionHandler completion: ((Swift.Result<T.Response, AicactusAdsNetwork.AdsNetworkSDKError>) -> Swift.Void)? = nil) -> AicactusAdsNetwork.SessionTask? where T : AicactusAdsNetwork.Request
+  @discardableResult
+  public func send<T>(_ request: T, callbackQueue: AicactusAdsNetwork.CallbackQueue = .currentMainOrSync, pipelines: [AicactusAdsNetwork.ResponsePipeline]?, completionHandler completion: ((Swift.Result<T.Response, AicactusAdsNetwork.AdsNetworkSDKError>) -> Swift.Void)? = nil) -> AicactusAdsNetwork.SessionTask? where T : AicactusAdsNetwork.Request
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class SessionTask {
+  @objc deinit
+}
+public struct AssetTitle : Swift.Codable {
+  public struct Request : Swift.Encodable {
+    public func encode(to encoder: Swift.Encoder) throws
+  }
+  public struct Response : Swift.Decodable {
+    public init(from decoder: Swift.Decoder) throws
+  }
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct Geo : Swift.Codable {
+  public var latitude: Swift.Float
+  public var longitude: Swift.Float
+  public var type: AicactusAdsNetwork.Geo.GeoType
+  public var accuracy: Swift.Int?
+  public var lastFix: Swift.Int?
+  public var ipService: AicactusAdsNetwork.Geo.IPLocationService?
+  public var country: Swift.String?
+  public var region: Swift.String?
+  public var regionFIPS104: Swift.String?
+  public var metro: Swift.String?
+  public var city: Swift.String?
+  public var zip: Swift.String?
+  public var localTime: Swift.Int?
+  public var ext: Swift.String?
+  public enum GeoType : Swift.Int, Swift.Codable {
+    case gps
+    case ipAddress
+    case userProvided
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  public enum IPLocationService : Swift.Int {
+    case ip2Location
+    case neuStart
+    case maxMind
+    case netAcuity
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct InitContainerRequest : AicactusAdsNetwork.Request {
+  public init(configurationID: Swift.String)
+  public var method: AicactusAdsNetwork.HTTPMethod
+  public var baseURL: Foundation.URL {
+    get
+  }
+  public var path: Swift.String {
+    get
+  }
+  public var parameters: [Swift.String : Any]? {
+    get
+  }
+  public typealias Response = AicactusAdsNetwork.Container
+}
+public struct Format : Swift.Codable {
+  public let width: Swift.Int
+  public let height: Swift.Int
+  public var widthRatio: Swift.Int?
+  public var heightRatio: Swift.Int?
+  public var widthMin: Swift.Int?
+  public var ext: Swift.String?
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public typealias ACIMAAdsManager = GoogleInteractiveMediaAds.IMAAdsManager
+public typealias ACIMAAdEvent = GoogleInteractiveMediaAds.IMAAdEvent
+public typealias ACIMAAdError = GoogleInteractiveMediaAds.IMAAdError
+public typealias ACIMAAdEventType = GoogleInteractiveMediaAds.IMAAdEventType
+public typealias ACIMAAdsLoader = GoogleInteractiveMediaAds.IMAAdsLoader
+public typealias ACIMAAdsLoadedData = GoogleInteractiveMediaAds.IMAAdsLoadedData
+public typealias ACIMAAdLoadingErrorData = GoogleInteractiveMediaAds.IMAAdLoadingErrorData
+public typealias ACIMAAVPlayerContentPlayhead = GoogleInteractiveMediaAds.IMAAVPlayerContentPlayhead
+public protocol IMAPlayerViewDelegate : ObjectiveC.NSObject {
+  func imaPlayerView(_ adsManager: AicactusAdsNetwork.ACIMAAdsManager, didReceive event: AicactusAdsNetwork.ACIMAAdEvent)
+  func imaPlayerView(_ adsManager: AicactusAdsNetwork.ACIMAAdsManager, didReceive error: AicactusAdsNetwork.ACIMAAdError)
+  func imaPlayerViewDidRequestContentPause(_ adsManager: AicactusAdsNetwork.ACIMAAdsManager)
+  func imaPlayerViewDidRequestContentResume(_ adsManager: AicactusAdsNetwork.ACIMAAdsManager)
+  func imaPlayerView(_ loader: AicactusAdsNetwork.ACIMAAdsLoader, adsLoadedWith adsLoadedData: AicactusAdsNetwork.ACIMAAdsLoadedData)
+  func imaPlayerView(_ loader: AicactusAdsNetwork.ACIMAAdsLoader, failedWith adErrorData: AicactusAdsNetwork.ACIMAAdLoadingErrorData)
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) open class IMAPlayerView : UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) public var contentPlayer: AVFoundation.AVPlayer!
+  @_Concurrency.MainActor(unsafe) public var delegate: AicactusAdsNetwork.IMAPlayerViewDelegate?
+  @objc deinit
+  @_Concurrency.MainActor(unsafe) public func setup(contentUrl: Swift.String)
+  @_Concurrency.MainActor(unsafe) public func requestAds(adUnitID: Swift.Int64)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
+}
+extension AicactusAdsNetwork.IMAPlayerView : AicactusAdsNetwork.VideoAdLoaderDelegate {
+  @_Concurrency.MainActor(unsafe) public func videoAdLoader(_ unitID: Swift.Int64, didFailLoad error: AicactusAdsNetwork.AdsNetworkSDKError)
+  @_Concurrency.MainActor(unsafe) public func videoAdLoader(_ unitID: Swift.Int64, didSuccessLoad bid: AicactusAdsNetwork.Bid, vastTagURL url: Swift.String)
+}
+extension AicactusAdsNetwork.IMAPlayerView : GoogleInteractiveMediaAds.IMAAdsManagerDelegate {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func adsManager(_ adsManager: GoogleInteractiveMediaAds.IMAAdsManager, didReceive event: GoogleInteractiveMediaAds.IMAAdEvent)
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func adsManager(_ adsManager: GoogleInteractiveMediaAds.IMAAdsManager, didReceive error: GoogleInteractiveMediaAds.IMAAdError)
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func adsManagerDidRequestContentPause(_ adsManager: GoogleInteractiveMediaAds.IMAAdsManager)
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func adsManagerDidRequestContentResume(_ adsManager: GoogleInteractiveMediaAds.IMAAdsManager)
+}
+extension AicactusAdsNetwork.IMAPlayerView : GoogleInteractiveMediaAds.IMAAdsLoaderDelegate {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func adsLoader(_ loader: GoogleInteractiveMediaAds.IMAAdsLoader, adsLoadedWith adsLoadedData: GoogleInteractiveMediaAds.IMAAdsLoadedData)
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func adsLoader(_ loader: GoogleInteractiveMediaAds.IMAAdsLoader, failedWith adErrorData: GoogleInteractiveMediaAds.IMAAdLoadingErrorData)
+}
+public enum ApiFramework : Swift.Int, Swift.Codable {
+  case vpaid1
+  case vpaid2
+  case mraid1
+  case ormma
+  case mraid2
+  case mraid3
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public struct Container : Swift.Decodable {
+  public let id: Swift.Int64
+  public let core: AicactusAdsNetwork.Core
+  public let inventories: [AicactusAdsNetwork.Inventory]
+  public let platforms: [AicactusAdsNetwork.DemandSidePlatform]?
+  public let name: Swift.String?
+  public let status: Swift.String?
+  public let url: Swift.String?
+  public let isFirstParty: Swift.Bool?
+  public let capping: AicactusAdsNetwork.Capping
+  public var configurationID: Swift.String?
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct Core : Swift.Decodable {
+  public let url: Swift.String
+  public let name: Swift.String
+  public let domain: Swift.String
+  public let type: Swift.String
+  public init(from decoder: Swift.Decoder) throws
+}
+public struct Banner : Swift.Codable {
+  public var id: Swift.String?
+  public var formats: [AicactusAdsNetwork.Format]?
+  public var width: Swift.Int?
+  public var height: Swift.Int?
+  public var blockedTypes: AicactusAdsNetwork.Banner.BannerType?
+  public var blockedAttributes: [AicactusAdsNetwork.CreativeAttribute]?
+  public var position: AicactusAdsNetwork.AdPosition?
+  public var mines: [Swift.String]?
+  public var topFrame: Swift.Int?
+  public var expandableDirection: [AicactusAdsNetwork.ExpandableDirection]?
+  public var apis: [AicactusAdsNetwork.ApiFramework]?
+  public var videoCompanion: AicactusAdsNetwork.VideoCompanion?
+  public var ext: Swift.String?
+  public enum BannerType : Swift.Int, Swift.Codable {
+    case xhtmlTextAd
+    case xhtmlBannerAd
+    case javascriptAd
+    case iframe
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public protocol AdViewDelegate : AnyObject {
+  func adView(_ adView: AicactusAdsNetwork.AdView, didFailLoad error: AicactusAdsNetwork.AdsNetworkSDKError)
+  func adView(_ adView: AicactusAdsNetwork.AdView, didSuccessLoad bid: AicactusAdsNetwork.Bid)
+}
+@objc @_inheritsConvenienceInitializers @IBDesignable @_Concurrency.MainActor(unsafe) open class AdView : UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) public var delegate: AicactusAdsNetwork.AdViewDelegate?
+  @_Concurrency.MainActor(unsafe) public var adSize: AicactusAdsNetwork.AdSize?
+  @_Concurrency.MainActor(unsafe) public var adType: AicactusAdsNetwork.AdType?
+  @objc @IBInspectable @_Concurrency.MainActor(unsafe) public var unitID: Foundation.NSNumber?
+  @objc @IBInspectable @_Concurrency.MainActor(unsafe) public var size: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor(unsafe) @objc override dynamic open var intrinsicContentSize: CoreGraphics.CGSize {
+    @_Concurrency.MainActor(unsafe) @objc get
+  }
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc override dynamic open func prepareForInterfaceBuilder()
+  @_Concurrency.MainActor(unsafe) open func loadAd(_ adRequest: AicactusAdsNetwork.AdRequest)
+  @objc deinit
+}
+extension AicactusAdsNetwork.AdView : WebKit.WKNavigationDelegate {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func webView(_ webView: WebKit.WKWebView, didStartProvisionalNavigation navigation: WebKit.WKNavigation!)
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func webView(_ webView: WebKit.WKWebView, didFinish navigation: WebKit.WKNavigation!)
+}
+public protocol ResponsePipelineTerminator : AnyObject {
+  func parse<T>(request: T, data: Foundation.Data) throws -> T.Response where T : AicactusAdsNetwork.Request
+}
+public protocol ResponsePipelineRedirector : AnyObject {
+  func shouldApply<T>(request: T, data: Foundation.Data, response: Foundation.HTTPURLResponse) -> Swift.Bool where T : AicactusAdsNetwork.Request
+  func redirect<T>(request: T, data: Foundation.Data, response: Foundation.HTTPURLResponse, done closure: @escaping (AicactusAdsNetwork.ResponsePipelineRedirectorAction) throws -> Swift.Void) throws where T : AicactusAdsNetwork.Request
+}
+public enum ResponsePipelineRedirectorAction {
+  case restart
+  case restartWithout(AicactusAdsNetwork.ResponsePipeline)
+  case stop(Swift.Error)
+  case `continue`
+  case continueWith(Foundation.Data, Foundation.HTTPURLResponse)
+}
+public enum ResponsePipeline {
+  case terminator(AicactusAdsNetwork.ResponsePipelineTerminator)
+  case redirector(AicactusAdsNetwork.ResponsePipelineRedirector)
+}
+extension AicactusAdsNetwork.ResponsePipeline : Swift.Equatable {
+  public static func == (lhs: AicactusAdsNetwork.ResponsePipeline, rhs: AicactusAdsNetwork.ResponsePipeline) -> Swift.Bool
+}
+public class JSONParsePipeline : AicactusAdsNetwork.ResponsePipelineTerminator {
+  final public let parser: Foundation.JSONDecoder
+  public init(_ parser: Foundation.JSONDecoder)
+  public func parse<T>(request: T, data: Foundation.Data) throws -> T.Response where T : AicactusAdsNetwork.Request
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class StringParsePipeline : AicactusAdsNetwork.ResponsePipelineTerminator {
+  public func parse<T>(request: T, data: Foundation.Data) throws -> T.Response where T : AicactusAdsNetwork.Request
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class BadHTTPStatusRedirector : AicactusAdsNetwork.ResponsePipelineRedirector {
+  public func shouldApply<T>(request: T, data: Foundation.Data, response: Foundation.HTTPURLResponse) -> Swift.Bool where T : AicactusAdsNetwork.Request
+  public func redirect<T>(request: T, data: Foundation.Data, response: Foundation.HTTPURLResponse, done closure: @escaping (AicactusAdsNetwork.ResponsePipelineRedirectorAction) throws -> Swift.Void) throws where T : AicactusAdsNetwork.Request
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class DataTransformRedirector : AicactusAdsNetwork.ResponsePipelineRedirector {
+  public func shouldApply<T>(request: T, data: Foundation.Data, response: Foundation.HTTPURLResponse) -> Swift.Bool where T : AicactusAdsNetwork.Request
+  public func redirect<T>(request: T, data: Foundation.Data, response: Foundation.HTTPURLResponse, done closure: @escaping (AicactusAdsNetwork.ResponsePipelineRedirectorAction) throws -> Swift.Void) throws where T : AicactusAdsNetwork.Request
+  @objc deinit
+}
+public struct Regs : Swift.Codable {
+  public var coppa: Swift.Int?
+  public var ext: Swift.String?
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public enum AdSize : Swift.String {
+  case banner
+  case fullBanner
+  case largeBanner
+  case rectangle
+  case mediumRectangle
+  case video
+  public struct Frame {
+    public let width: CoreGraphics.CGFloat
+    public let height: CoreGraphics.CGFloat
+  }
+  public var frame: AicactusAdsNetwork.AdSize.Frame {
+    get
+  }
+  public var ratio: CoreGraphics.CGFloat {
+    get
+  }
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+extension AicactusAdsNetwork.VideoCompanion : Swift.Equatable {}
+extension AicactusAdsNetwork.VideoCompanion : Swift.Hashable {}
+extension AicactusAdsNetwork.VideoCompanion : Swift.RawRepresentable {}
+extension AicactusAdsNetwork.Device.DeviceType : Swift.Equatable {}
+extension AicactusAdsNetwork.Device.DeviceType : Swift.Hashable {}
+extension AicactusAdsNetwork.Device.DeviceType : Swift.RawRepresentable {}
+extension AicactusAdsNetwork.Device.ConnectionType : Swift.Equatable {}
+extension AicactusAdsNetwork.Device.ConnectionType : Swift.Hashable {}
+extension AicactusAdsNetwork.Device.ConnectionType : Swift.RawRepresentable {}
+extension AicactusAdsNetwork.CreativeAttribute : Swift.Equatable {}
+extension AicactusAdsNetwork.CreativeAttribute : Swift.Hashable {}
+extension AicactusAdsNetwork.CreativeAttribute : Swift.RawRepresentable {}
+extension AicactusAdsNetwork.NoBidReasonCode : Swift.Equatable {}
+extension AicactusAdsNetwork.NoBidReasonCode : Swift.Hashable {}
+extension AicactusAdsNetwork.NoBidReasonCode : Swift.RawRepresentable {}
+extension AicactusAdsNetwork.AdType : Swift.Equatable {}
+extension AicactusAdsNetwork.AdType : Swift.Hashable {}
+extension AicactusAdsNetwork.AdType : Swift.RawRepresentable {}
+extension AicactusAdsNetwork.PlaybackMethod : Swift.Equatable {}
+extension AicactusAdsNetwork.PlaybackMethod : Swift.Hashable {}
+extension AicactusAdsNetwork.PlaybackMethod : Swift.RawRepresentable {}
+extension AicactusAdsNetwork.AssetImage.ImageType : Swift.Equatable {}
+extension AicactusAdsNetwork.AssetImage.ImageType : Swift.Hashable {}
+extension AicactusAdsNetwork.AssetImage.ImageType : Swift.RawRepresentable {}
+extension AicactusAdsNetwork.MediaRating : Swift.Equatable {}
+extension AicactusAdsNetwork.MediaRating : Swift.Hashable {}
+extension AicactusAdsNetwork.MediaRating : Swift.RawRepresentable {}
+extension AicactusAdsNetwork.DeliveryMethod : Swift.Equatable {}
+extension AicactusAdsNetwork.DeliveryMethod : Swift.Hashable {}
+extension AicactusAdsNetwork.DeliveryMethod : Swift.RawRepresentable {}
+extension AicactusAdsNetwork.ExpandableDirection : Swift.Equatable {}
+extension AicactusAdsNetwork.ExpandableDirection : Swift.Hashable {}
+extension AicactusAdsNetwork.ExpandableDirection : Swift.RawRepresentable {}
+extension AicactusAdsNetwork.CompanionType : Swift.Equatable {}
+extension AicactusAdsNetwork.CompanionType : Swift.Hashable {}
+extension AicactusAdsNetwork.CompanionType : Swift.RawRepresentable {}
+extension AicactusAdsNetwork.User.Gender : Swift.Equatable {}
+extension AicactusAdsNetwork.User.Gender : Swift.Hashable {}
+extension AicactusAdsNetwork.User.Gender : Swift.RawRepresentable {}
+extension AicactusAdsNetwork.HTTPMethod : Swift.Equatable {}
+extension AicactusAdsNetwork.HTTPMethod : Swift.Hashable {}
+extension AicactusAdsNetwork.HTTPMethod : Swift.RawRepresentable {}
+extension AicactusAdsNetwork.ContentType : Swift.Equatable {}
+extension AicactusAdsNetwork.ContentType : Swift.Hashable {}
+extension AicactusAdsNetwork.AdPosition : Swift.Equatable {}
+extension AicactusAdsNetwork.AdPosition : Swift.Hashable {}
+extension AicactusAdsNetwork.AdPosition : Swift.RawRepresentable {}
+extension AicactusAdsNetwork.VideoProtocol : Swift.Equatable {}
+extension AicactusAdsNetwork.VideoProtocol : Swift.Hashable {}
+extension AicactusAdsNetwork.VideoProtocol : Swift.RawRepresentable {}
+extension AicactusAdsNetwork.VideoStartDelay : Swift.Equatable {}
+extension AicactusAdsNetwork.VideoStartDelay : Swift.Hashable {}
+extension AicactusAdsNetwork.VideoStartDelay : Swift.RawRepresentable {}
+extension AicactusAdsNetwork.Video.Linearity : Swift.Equatable {}
+extension AicactusAdsNetwork.Video.Linearity : Swift.Hashable {}
+extension AicactusAdsNetwork.Video.Linearity : Swift.RawRepresentable {}
+extension AicactusAdsNetwork.Video.Placement : Swift.Equatable {}
+extension AicactusAdsNetwork.Video.Placement : Swift.Hashable {}
+extension AicactusAdsNetwork.Video.Placement : Swift.RawRepresentable {}
+extension AicactusAdsNetwork.Audio.FeedType : Swift.Equatable {}
+extension AicactusAdsNetwork.Audio.FeedType : Swift.Hashable {}
+extension AicactusAdsNetwork.Audio.FeedType : Swift.RawRepresentable {}
+extension AicactusAdsNetwork.Audio.VolumeMode : Swift.Equatable {}
+extension AicactusAdsNetwork.Audio.VolumeMode : Swift.Hashable {}
+extension AicactusAdsNetwork.Audio.VolumeMode : Swift.RawRepresentable {}
+extension AicactusAdsNetwork.Geo.GeoType : Swift.Equatable {}
+extension AicactusAdsNetwork.Geo.GeoType : Swift.Hashable {}
+extension AicactusAdsNetwork.Geo.GeoType : Swift.RawRepresentable {}
+extension AicactusAdsNetwork.Geo.IPLocationService : Swift.Equatable {}
+extension AicactusAdsNetwork.Geo.IPLocationService : Swift.Hashable {}
+extension AicactusAdsNetwork.Geo.IPLocationService : Swift.RawRepresentable {}
+extension AicactusAdsNetwork.ApiFramework : Swift.Equatable {}
+extension AicactusAdsNetwork.ApiFramework : Swift.Hashable {}
+extension AicactusAdsNetwork.ApiFramework : Swift.RawRepresentable {}
+extension AicactusAdsNetwork.Banner.BannerType : Swift.Equatable {}
+extension AicactusAdsNetwork.Banner.BannerType : Swift.Hashable {}
+extension AicactusAdsNetwork.Banner.BannerType : Swift.RawRepresentable {}
+extension AicactusAdsNetwork.AdSize : Swift.Equatable {}
+extension AicactusAdsNetwork.AdSize : Swift.Hashable {}
+extension AicactusAdsNetwork.AdSize : Swift.RawRepresentable {}
