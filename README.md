@@ -70,6 +70,8 @@ adView.loadAd(AdRequest())
 
 ### Video Ad
 
+#### Load Ad VAST Tag Url
+
 ```swift
 // Create AdView with size and type is video
 let videoAdLoader = VideoAdLoader(adUnitID: <<<Find your inventory ID in container>>>, adSize: .video)
@@ -80,6 +82,62 @@ videoAdLoader.delegate = self
 // Perform loadAd with a request
 videoAdLoader.loadAd(AdRequest())
 
+```
+
+#### Using Native Player to player Content and Ad
+
+Define your player in layout and connect IBOutlet in your ViewController
+```swift
+@IBOutlet weak var imaPlayer: IMAPlayerView!
+```
+
+Init player
+```swift
+override func viewDidLoad() {
+    super.viewDidLoad()
+    imaPlayer.setup(contentUrl: ContentURLString)
+    imaPlayer.delegate = self
+}
+```
+
+Request Ads
+```swift
+override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    imaPlayer.requestAds(adUnitID: 21)
+}
+```
+
+Listen event video Ad loaded and perform playing
+
+```swift
+extension ViewController: IMAPlayerViewDelegate {
+    func imaPlayerView(_ adsManager: ACIMAAdsManager, didReceive event: ACIMAAdEvent) {
+        if event.type == ACIMAAdEventType.LOADED {
+            adsManager.start()
+        }
+    }
+
+    func imaPlayerView(_ adsManager: ACIMAAdsManager, didReceive error: ACIMAAdError) {
+        imaPlayer.contentPlayer.play()
+    }
+
+    func imaPlayerViewDidRequestContentPause(_ adsManager: ACIMAAdsManager) {
+        imaPlayer.contentPlayer.pause()
+    }
+
+    func imaPlayerViewDidRequestContentResume(_ adsManager: ACIMAAdsManager) {
+        imaPlayer.contentPlayer.play()
+    }
+
+    func imaPlayerView(_ loader: ACIMAAdsLoader, adsLoadedWith adsLoadedData: ACIMAAdsLoadedData) {
+
+    }
+
+    func imaPlayerView(_ loader: ACIMAAdsLoader, failedWith adErrorData: ACIMAAdLoadingErrorData) {
+        imaPlayer.contentPlayer.play()
+    }
+}
 ```
 
 ### Listen Ad Events
@@ -93,6 +151,12 @@ extension ShowAdViewController: AdViewDelegate {
 
     func adView(_ adView: AdView, didSuccessLoad bid: Bid) {
         print("Ad Loaded with bid id: \(bid.id)")
+    }
+
+	// Override click on Ad behavior
+	func adView(_ adView: AdView, didClickAd url: URL) {
+        let safariViewController = SFSafariViewController(url: url)
+        present(safariViewController, animated: true)
     }
 }
 ```
