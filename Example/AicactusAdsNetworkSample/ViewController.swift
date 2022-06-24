@@ -6,14 +6,14 @@
 //
 
 import UIKit
-import AicactusAdsNetwork
+import AiactivAdNetwork
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        AicactusAdsNetwork.shared.setup("b8a3ccf2-5d49-4912-b2cc-87dc46e10277") { result in
+        AiactivAdNetwork.shared.setup("b8a3ccf2-5d49-4912-b2cc-87dc46e10277") { result in
             switch result {
             case .success(let container):
                 print("Container ID \(container.id)")
@@ -30,7 +30,7 @@ extension ViewController: AdViewDelegate {
         
     }
     
-    func adView(_ adView: AdView, didSuccessLoad bid: Bid) {
+    func adView(_ adView: AdView) {
         
     }
     

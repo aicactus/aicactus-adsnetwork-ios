@@ -1,20 +1,20 @@
 PODS:
-  - AicactusAdsNetwork (1.2.0):
+  - AiactivAdNetwork (0.3.0):
     - GoogleAds-IMA-iOS-SDK
   - GoogleAds-IMA-iOS-SDK (3.14.5)
 
 DEPENDENCIES:
-  - AicactusAdsNetwork (= 1.2.0)
+  - AiactivAdNetwork (= 0.3.0)
 
 SPEC REPOS:
   trunk:
-    - AicactusAdsNetwork
+    - AiactivAdNetwork
     - GoogleAds-IMA-iOS-SDK
 
 SPEC CHECKSUMS:
-  AicactusAdsNetwork: 042b98fb3c76ef057ee51686809c944739232926
+  AiactivAdNetwork: 042b15f959b282d71ebe7aaf40c8345f667dbd3d
   GoogleAds-IMA-iOS-SDK: b088674002266c5638e73d10696c8b13872ee15e
 
-PODFILE CHECKSUM: 3a92bf4e07111d116a2cd49a98464596b0adb0f5
+PODFILE CHECKSUM: a072bfe19f7c1f048d2badd3e8b6674fc61849d0
 
 COCOAPODS: 1.11.3
