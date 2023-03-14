@@ -6,36 +6,31 @@
 //
 
 import UIKit
-import AiactivAdNetwork
+import AiactivUniversalSDK
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var nativeAdView: NativeAdTemplateView!
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        AiactivAdNetwork.shared.setup("b8a3ccf2-5d49-4912-b2cc-87dc46e10277") { result in
-            switch result {
-            case .success(let container):
-                print("Container ID \(container.id)")
-            case .failure(let error):
-                print("Failed to init: \(error)")
-            }
+        
+        nativeAdView.contentView.delegate = self
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            self.nativeAdView.contentView.loadAd(adUnitID: 534, adRequest: AdRequest())
         }
+        
+        
     }
 
 }
 
-extension ViewController: AdViewDelegate {
-    func adView(_ adView: AdView, didFailLoad error: AdsNetworkSDKError) {
-        
-    }
-    
-    func adView(_ adView: AdView) {
-        
-    }
-    
-    func adView(_ adView: AdView, didClickAd url: URL) {
-        
+extension ViewController: NativeAdViewDelegate {
+    func onNativeAdViewEvent(_ view: AiactivUniversalSDK.NativeAdView, adEvent event: AiactivUniversalSDK.NativeAdView.NativeAdEvent) {
+        print("Event: \(event.data.name) - error \(event.data.message ?? "nil")")
     }
 }
+
 

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		428CF704FECEB14A9B7C1125 /* libPods-AicactusAdsNetworkSample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAB0E5127ED515416C56734 /* libPods-AicactusAdsNetworkSample.a */; };
+		5F99974F29235A7100D5AFC7 /* libPods-AicactusAdsNetworkSample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F99974E29235A7100D5AFC7 /* libPods-AicactusAdsNetworkSample.a */; };
 		5FB9FFDD27CDB00C00E28D1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB9FFDC27CDB00C00E28D1B /* AppDelegate.swift */; };
 		5FB9FFDF27CDB00C00E28D1B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB9FFDE27CDB00C00E28D1B /* SceneDelegate.swift */; };
 		5FB9FFE127CDB00C00E28D1B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB9FFE027CDB00C00E28D1B /* ViewController.swift */; };
@@ -16,9 +16,23 @@
 		5FB9FFE927CDB01100E28D1B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FB9FFE727CDB01100E28D1B /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		5F99975229235A7700D5AFC7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0CE88D56C5A3F292E803673D /* Pods-AicactusAdsNetworkSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AicactusAdsNetworkSample.release.xcconfig"; path = "Target Support Files/Pods-AicactusAdsNetworkSample/Pods-AicactusAdsNetworkSample.release.xcconfig"; sourceTree = "<group>"; };
 		3DAB0E5127ED515416C56734 /* libPods-AicactusAdsNetworkSample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AicactusAdsNetworkSample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F99974E29235A7100D5AFC7 /* libPods-AicactusAdsNetworkSample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-AicactusAdsNetworkSample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB9FFD927CDB00C00E28D1B /* AicactusAdsNetworkSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AicactusAdsNetworkSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FB9FFDC27CDB00C00E28D1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5FB9FFDE27CDB00C00E28D1B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,7 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				428CF704FECEB14A9B7C1125 /* libPods-AicactusAdsNetworkSample.a in Frameworks */,
+				5F99974F29235A7100D5AFC7 /* libPods-AicactusAdsNetworkSample.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,6 +59,7 @@
 		4EE39BC34440CD65C98E8ABD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5F99974E29235A7100D5AFC7 /* libPods-AicactusAdsNetworkSample.a */,
 				3DAB0E5127ED515416C56734 /* libPods-AicactusAdsNetworkSample.a */,
 			);
 			name = Frameworks;
@@ -88,7 +103,6 @@
 				90BE4A8D694F7A291075CAFE /* Pods-AicactusAdsNetworkSample.debug.xcconfig */,
 				0CE88D56C5A3F292E803673D /* Pods-AicactusAdsNetworkSample.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -103,7 +117,8 @@
 				5FB9FFD527CDB00C00E28D1B /* Sources */,
 				5FB9FFD627CDB00C00E28D1B /* Frameworks */,
 				5FB9FFD727CDB00C00E28D1B /* Resources */,
-				ECDFC15F41AEE8832C8A19B0 /* [CP] Embed Pods Frameworks */,
+				5F99975229235A7700D5AFC7 /* Embed Frameworks */,
+				3215794C4E4BD65115A97BCD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -161,6 +176,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3215794C4E4BD65115A97BCD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AicactusAdsNetworkSample/Pods-AicactusAdsNetworkSample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AicactusAdsNetworkSample/Pods-AicactusAdsNetworkSample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AicactusAdsNetworkSample/Pods-AicactusAdsNetworkSample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B8EF0B7F19F57424912818C7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -181,23 +213,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		ECDFC15F41AEE8832C8A19B0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AicactusAdsNetworkSample/Pods-AicactusAdsNetworkSample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AicactusAdsNetworkSample/Pods-AicactusAdsNetworkSample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AicactusAdsNetworkSample/Pods-AicactusAdsNetworkSample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -360,6 +375,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WU53KX8R8A;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AicactusAdsNetworkSample/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -389,6 +408,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WU53KX8R8A;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AicactusAdsNetworkSample/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

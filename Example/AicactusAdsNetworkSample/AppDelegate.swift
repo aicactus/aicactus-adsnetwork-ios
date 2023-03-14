@@ -6,14 +6,16 @@
 //
 
 import UIKit
+import AiactivUniversalSDK
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        Aiactiv.isStaging = true
+        Aiactiv.start()
+
         return true
     }
 
